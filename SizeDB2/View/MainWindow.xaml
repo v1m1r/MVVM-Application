@@ -1,0 +1,72 @@
+﻿<Window x:Class="SizeDB2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SizeDB2"
+        mc:Ignorable="d"
+        Title="Главное окно заявок" Height="800" Width="1000"  WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,-29,18">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="62" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5,5,27,-18" Grid.RowSpan="2">
+            <DataGrid ItemsSource="{Binding Peoples}"  SelectedItem="{Binding SelectedPeoples}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="191" VerticalAlignment="Top" Width="979"  IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding People.Id}"  Width="*" />
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding People.Fio}"  Width="*" />
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding People.Phone}"  Width="*" />
+                    <DataGridTextColumn Header="Дата" Binding="{Binding People.Date}"  Width="*" />
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding People.Address}"  Width="*" />
+                    <DataGridTextColumn Header="Город" Binding="{Binding City.CityName}"  Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="316,0,315,0" Width="190">
+                <Button x:Name="buttonAdd" Command="{Binding NewAddOrderSizeCommand}" Margin="0,0,15,0">
+                    <StackPanel >
+                        <Image Source="..\icon\add.png" Margin="0,0,5,0" Width="43" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonEdit" Command="{Binding EditOrderSizeCommand}" CommandParameter="{Binding ElementName=dataGrid, Path=SelectedItem}" Margin="0,0,15,0">
+                    <StackPanel>
+                        <Image Source="..\icon\edit.png" Margin="0,0,5,0" Width="45" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonDelete" Command="{Binding DeleteOrderSizeCommand}"
+                    CommandParameter="{Binding ElementName=dataGrid, Path=SelectedItem}" >
+                    <StackPanel>
+                        <Image Source="..\icon\delete.png" Margin="0,0,5,0" Width="45" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <TextBlock FontSize="14" FontWeight="Bold" Text="Города" Margin="5"/>
+            <DataGrid ItemsSource="{Binding Citys}" SelectedItem="{Binding SelectedCitys}" AutoGenerateColumns="False" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Название города" Width="*" Binding="{Binding CityName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Command="{Binding AddCityCommand}" Content="Добавить город" Margin="5" Padding="2" Height="44" Width="122"/>
+              <!--"  <Button Command="{Binding DeleteCityCommand}" Content="Удалить" Margin="5" Padding="2"/> -->
+            </StackPanel>
+            <TextBlock Text="Установка лимита на город" Margin="5"/>
+            <DataGrid ItemsSource="{Binding Limits}" SelectedItem="{Binding SelectedLimit}" AutoGenerateColumns="False" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Limit.Id}"/>
+                    <DataGridTextColumn Header="Название города" Binding="{Binding City.CityName}"/>
+                    <DataGridTextColumn Header="Лимит замеров" Binding="{Binding Limit.Limit}"/>
+                    <DataGridTextColumn Header="Дата замера" Binding="{Binding Limit.Date}"/>
+                 
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Margin="5" Height="64">
+                <Button Command="{Binding AddLimitCommand}" Content="Добавить лимит" Margin="5" Padding="2"/>
+              <!--  <Button Command="{Binding RemoveLimitCommand}" Content="Удалить" Margin="5" Padding="2"/> -->
+            </StackPanel>
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="SizeDB2.AddOrderSize"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SizeDB2"
+        mc:Ignorable="d"
+        Title="Добавление новой заявки на замер" Height="450" Width="800">
+    <StackPanel Margin="5">
+        <TextBlock Text="ФИО" Margin="5"/>
+        <TextBox Text="{Binding People.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <TextBlock Text="Телефон" Margin="5"/>
+        <TextBox Text="{Binding People.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <TextBlock Text="Адрес" Margin="5"/>
+        <TextBox Text="{Binding People.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <TextBlock Text="Город" Margin="5"/>
+        <ComboBox ItemsSource="{Binding Citys}" DisplayMemberPath="CityName" SelectedValue="{Binding People.CityId , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" Margin="5"/>
+        <StackPanel Margin="5" Orientation="Horizontal" Height="48">
+            <Button Command="{Binding AddSizeOrderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Добавить" Margin="5"/>
+            <Button Command="{Binding CancelCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Выход" Margin="5"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

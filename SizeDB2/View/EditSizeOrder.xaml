@@ -1,0 +1,33 @@
+﻿<Window x:Class="SizeDB2.View.EditSizeOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SizeDB2.View"
+        mc:Ignorable="d"
+        Title="Установка даты замера" Height="577" Width="800">
+    <Grid>
+     
+        <StackPanel Margin="5,5,2,13" Grid.Row="0" Grid.Column="0">
+            <TextBlock FontSize="16" Foreground="Red" Text="Id Заявки" Margin="5" IsEnabled="false"/>
+            <TextBox Text="{Binding People.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" IsEnabled="false" FontSize="14" />
+            <TextBlock Text="ФИО" FontSize="16" Foreground="Green" Margin="5"/>
+            <TextBox Text="{Binding People.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14" />
+            <TextBlock Text="Телефон" FontSize="16" Margin="5"/>
+            <TextBox Text="{Binding People.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14"/>
+            <TextBlock Text="Дата замера"  Margin="5"/>
+            <DatePicker SelectedDate="{Binding People.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Адрес" FontSize="16" Margin="5"/>
+            <TextBox Text="{Binding People.Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14"/>
+            <TextBlock Text="Город" Margin="5" FontSize="16"/>
+            <ComboBox ItemsSource="{Binding City}" DisplayMemberPath="CityName" SelectedValue="{Binding People.CityId , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" Margin="5" FontSize="14"/>
+            <!--  <TextBox Text="{Binding Citys.Limit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14"/> -->
+            
+            <StackPanel Margin="5" Orientation="Horizontal" Height="58">
+                <Button Command="{Binding EditSaveSizeOrderCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Обновить" Margin="5"/>
+                <Button Command="{Binding CancelCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Отмена" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+   
+    </Grid>
+</Window>
